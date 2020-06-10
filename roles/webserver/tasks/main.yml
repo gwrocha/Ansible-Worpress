@@ -1,0 +1,19 @@
+---
+- name: 'Adicionando repositório para o PHP5.6'
+  apt_repository:
+    repo: ppa:ondrej/php
+    validate_certs: no
+  become: yes
+- name: 'Instalando pacotes..'
+  apt:
+    name: "{{item}}"
+    state: latest
+  become: yes
+  with_items:
+    - php5.6-common 
+    - php5.6-cli 
+    - php5.6 
+    - libapache2-mod-php5.6
+    - apache2
+    - php5.6-mcrypt
+    - php5.6-mysql
